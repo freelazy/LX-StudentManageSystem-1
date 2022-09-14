@@ -8,51 +8,52 @@ using System.Data.SqlClient;
 
 namespace StudentManageSystem
 {
-    public class StudentList : IHttpHandler
+    public class StudentDetail : IHttpHandler
     {
         public bool IsReusable => false;
 
         public void ProcessRequest(HttpContext context)
         {
+            string id = context.Request.Params["id"];
+
             // 第一步，将所有学生，从数据库中读取出来
             var connStr = ConfigurationManager.ConnectionStrings["mydb"].ConnectionString;
-            var sql = "select id, name, homecity from students";
+            var sql = $"select * from students where id = '{id}'";
             var adapter = new SqlDataAdapter(sql, connStr);
 
             var dt = new DataTable();
             adapter.Fill(dt);
+            var student = dt.Rows[0];
 
             // 第二步，拼接出合适的 html 页面
-            var rows = String.Empty;
-            foreach (DataRow dr in dt.Rows)
-            {
-                rows += $@"
-<tr>
-  <td><a href='/student?id={dr[0]}'>{dr[1]}</a></td>
-  <td>{dr[2]}</td>
-</tr>
+            var studentStr = $@"
+<ul>
+   <li>学号: {student[0]}</li>
+   <li>姓名: {student[1]}</li>
+   <li>地址: {student[2]}</li>
+   <li>电话: {student[7]}</li>
+</ul>
+<div>
+   <button onclick='goHome()'>点我返回首页</button>
+</div>
+<script>
+   function goHome () {{
+      //if (window.confirm('是不是确定要返回首页?')) {{
+         window.location.href = '/students';
+      //}}
+   }}
+</script>
 ";
-            }
+            
             var html = $@"
 <html>
 <head>
 <style>
-  table, th, td {{
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px 2em;
-  }}
-  a {{
-    text-decoration: none;
-  }}
 </style>
 </head>
 <body>
-  <h3> 学生列表 </h3>
-  <table>
-<tr><th>姓名</th><th>地址</th></tr>
-{rows}
-  </table>
+  <h3> 学生详细信息 </h3>
+{studentStr}
 </body>
 </html>";
 
