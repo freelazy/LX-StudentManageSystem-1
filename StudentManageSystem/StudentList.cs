@@ -26,13 +26,27 @@ namespace StudentManageSystem
             var rows = String.Empty;
             foreach (DataRow dr in dt.Rows)
             {
-                rows += $"<tr><td>{dr[1]}</td><td>{dr[2]}</td></tr>\n";
+                rows += $"<tr><td>{dr[1]}</td><td>{dr[2]}</td></tr>\r\n";
             }
-            var head = "<tr><th>姓名</th><th>地址</th></tr>";
-            var table = $"<table>{head}\n{rows}</table>";
-
-            var css = "<style>table, th, td { border: 1px solid black; border-collapse: collapse; padding: 5px 2em }</style>";
-            var html = $"<html><head>{css}</head><body>{table}</body></html>";
+            var html = $@"
+<html>
+<head>
+<style>
+  table, th, td {{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px 2em;
+  }}
+</style>
+</head>
+<body>
+  <h3> 学生列表 </h3>
+  <table>
+<tr><th>姓名</th><th>地址</th></tr>
+{rows}
+  </table>
+</body>
+</html>";
 
             // 第三步，返回给请求者
             context.Response.Write(html);
