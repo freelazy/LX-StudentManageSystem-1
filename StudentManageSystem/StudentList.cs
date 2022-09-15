@@ -28,8 +28,12 @@ namespace StudentManageSystem
             {
                 rows += $@"
 <tr>
-  <td><a href='/student?id={dr[0]}'>{dr[1]}</a></td>
+  <td><a href='/student/detail?id={dr[0]}'>{dr[1]}</a></td>
   <td>{dr[2]}</td>
+  <td>
+     <a href='/student/update?id={dr[0]}'>编辑</a>
+     <a href='#' onclick='doDelete(""{dr[0]}"")'>删除</a>
+  </td>
 </tr>
 ";
             }
@@ -49,10 +53,21 @@ namespace StudentManageSystem
 </head>
 <body>
   <h3> 学生列表 </h3>
+  <div>
+     <a href='/student/add'>添加学生</a>
+  </div>
   <table>
-<tr><th>姓名</th><th>地址</th></tr>
+<tr><th>姓名</th><th>地址</th><th>操作</th></tr>
 {rows}
   </table>
+  <script>
+     function doDelete(id) {{
+         if (window.confirm('是不是确定要删除?'))
+         {{
+              window.location.href = '/student/delete?id=' + id;
+         }}
+     }}
+  </script>
 </body>
 </html>";
 

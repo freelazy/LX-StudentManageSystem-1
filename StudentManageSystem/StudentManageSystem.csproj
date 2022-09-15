@@ -71,6 +71,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentDelete.cs" />
+    <Compile Include="StudentUpdateForm.cs" />
+    <Compile Include="StudentAddForm.cs" />
+    <Compile Include="StudentUpdateSubmit .cs" />
+    <Compile Include="StudentAddSubmit.cs" />
     <Compile Include="StudentDetail.cs" />
     <Compile Include="StudentList.cs" />
   </ItemGroup>
