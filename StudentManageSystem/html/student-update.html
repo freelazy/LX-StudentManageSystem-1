@@ -1,0 +1,59 @@
+﻿<html>
+<head>
+    <style>
+        .btn-group 
+        [
+           padding: 2em;
+           display: flex;
+           justify-content: space-around;
+           width: 200px;
+        ]
+    </style>
+</head>
+<body>
+    <h3> 添加学生 </h3>
+    <hr />
+    <p style="color: red; background: lightyellow;">
+        欢迎您使用此功能.
+    </p>
+    <form action='/student/update' method='POST'>
+        <div>
+            <div>
+                <span>学号</span>
+                <span><input name='id' value='{0}' readonly></span>
+            </div>
+            <div>
+                <span>姓名</span>
+                <span><input name='name' value='{1}'></span>
+            </div>
+            <div>
+                <span>电话</span>
+                <span><input name='telephone' value='{2}'></span>
+            </div>
+            <div>
+                <span>地址</span>
+                <span><input name='homecity' value='{3}'></span>
+            </div>
+            <div>
+                <span>读音</span>
+                <span><input name='duyin' value='{4}'></span>
+            </div>
+            <div>
+                <span>状态</span>
+                <span><input name='state' value='{5}'></span>
+            </div>
+        </div>
+        <div class='btn-group'>
+            <button onclick='goHome()'>返回首页</button>
+            <button>保存</button>
+        </div>
+    </form>
+    <script>
+       function goHome () [
+          //if (window.confirm('是不是确定要返回首页?')) [
+             window.location.href = '/students';
+          //]
+       ]
+    </script>
+</body>
+</html>

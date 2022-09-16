@@ -1,0 +1,26 @@
+﻿<html>
+<head>
+    <style>
+        table, tr, td [
+            border: 1px solid black;
+        ]
+    </style>
+</head>
+<body>
+    <h3> 学生详细信息 </h3>
+    <table>
+        <tr><td>学号</td><td>{0}</td></tr>
+        <tr><td>姓名</td><td>{1}</td></tr>
+        <tr><td>地址</td><td>{2}</td></tr>
+        <tr><td>电话</td><td>{3}</td></tr>
+    </table>
+    <div>
+        <button onclick='goHome()'>点我返回首页</button>
+    </div>
+    <script>
+       function goHome () [
+         window.location.href = '/students';
+       ]
+    </script>
+</body>
+</html>
