@@ -18,6 +18,8 @@ namespace StudentManageSystem
             var sql = "select id, name, homecity from students";
             var dt = DbHelper.DoExecuteQuery(sql);
 
+           
+
             // 第二步，拼接出合适的 html 页面
             var rows = String.Empty;
             foreach (DataRow dr in dt.Rows)

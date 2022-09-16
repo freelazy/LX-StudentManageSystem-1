@@ -22,14 +22,15 @@ namespace StudentManageSystem
                 .Rows[0];
 
             // 组装页面
-            var html = PgHelper.GetHtml("student-update.html",
-                context.Request,
+            var html = PgHelper.GetHtml(
+                "student-update.html",
                 student["id"],
                 student["name"],
                 student["telephone"],
                 student["homecity"],
                 student["duyin"],
-                student["state"]);
+                student["state"]
+            );
 
             // 第三步，返回给请求者
             context.Response.Write(html);

@@ -8,22 +8,36 @@ namespace StudentManageSystem
 {
     public class PgHelper
     {
-        public static string GetTemplate(string path, HttpRequest request)
+        public static string GetTemplate(string path)
         {
             // 1.获取 student-update.html 文件的绝对路径
-            string file = $"{request.PhysicalApplicationPath}html\\{path}";
+            path = Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "html", path);
             // 2. 通过 API 将文件中所有内容读取为字符串
-            string context = File.ReadAllText(file);
+            var context = File.ReadAllText(path);
             // 3. 将字符串返回
             return context;
         }
 
-        public static string GetHtml(string path, HttpRequest request, params object[] ds)
+        /// <summary>
+        /// 不完美的完美实现。基于字符串替换。
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="ds"></param>
+        /// <returns></returns>
+        public static string GetHtml(string path, params object[] ds)
         {
-            var tpl = GetTemplate(path, request);
-            return string.Format(tpl, ds)
-                .Replace('[', '{')
-                .Replace(']', '}');
+            var tpl = GetTemplate(path);
+            var html = string.Format(tpl
+                                    .Replace("{{", "<<aaa")
+                                    .Replace("}}", "bbb>>")
+                                    .Replace("{", "<<fff")
+                                    .Replace("}", ">>ggg")
+                                    .Replace("<<aaa", "{")
+                                    .Replace("bbb>>", "}"),
+                                    ds)
+                .Replace("<<fff", "{")
+                .Replace(">>ggg", "}");
+            return html;
         }
     }
 }

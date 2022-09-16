@@ -22,12 +22,10 @@ namespace StudentManageSystem
                 .Rows[0];
 
             // 第二步，拼接出合适的 html 页面
-            var html = PgHelper.GetHtml("student-detail.html",
-                context.Request,
-                student[0],
-                student[1],
-                student[2],
-                student[7]);
+            var html = PgHelper.GetHtml(
+                "student-detail.html",
+                student[0], student[1], student[2], student[7]
+            );
 
             // 第三步，返回给请求者
             context.Response.Write(html);
