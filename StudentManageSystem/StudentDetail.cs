@@ -17,13 +17,9 @@ namespace StudentManageSystem
             string id = context.Request.Params["id"];
 
             // 第一步，将所有学生，从数据库中读取出来
-            var connStr = ConfigurationManager.ConnectionStrings["mydb"].ConnectionString;
-            var sql = $"select * from students where id = '{id}'";
-            var adapter = new SqlDataAdapter(sql, connStr);
-
-            var dt = new DataTable();
-            adapter.Fill(dt);
-            var student = dt.Rows[0];
+            var student = DbHelper
+                .DoExecuteQuery($"select * from students where id = '{id}'")
+                .Rows[0];
 
             // 第二步，拼接出合适的 html 页面
             var html = $@"

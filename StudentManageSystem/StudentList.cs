@@ -15,12 +15,8 @@ namespace StudentManageSystem
         public void ProcessRequest(HttpContext context)
         {
             // 第一步，将所有学生，从数据库中读取出来
-            var connStr = ConfigurationManager.ConnectionStrings["mydb"].ConnectionString;
             var sql = "select id, name, homecity from students";
-            var adapter = new SqlDataAdapter(sql, connStr);
-
-            var dt = new DataTable();
-            adapter.Fill(dt);
+            var dt = DbHelper.DoExecuteQuery(sql);
 
             // 第二步，拼接出合适的 html 页面
             var rows = String.Empty;

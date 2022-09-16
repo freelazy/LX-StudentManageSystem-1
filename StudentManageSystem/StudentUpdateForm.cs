@@ -17,12 +17,9 @@ namespace StudentManageSystem
             var id = context.Request.Params["id"];
 
             // 先将要修改的数据查出来
-            var connStr = ConfigurationManager.ConnectionStrings["mydb"].ConnectionString;
-            var sql = $"select * from students where id = '{id}'";
-            var adapter = new SqlDataAdapter(sql, connStr);
-            var dt = new DataTable();
-            adapter.Fill(dt);
-            var student = dt.Rows[0];
+            var student = DbHelper
+                .DoExecuteQuery($"select * from students where id = '{id}'")
+                .Rows[0];
 
             // 组装页面
             var html = $@"

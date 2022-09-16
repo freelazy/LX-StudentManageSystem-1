@@ -17,21 +17,8 @@ namespace StudentManageSystem
             // 获取请求者发送的数据
             var id = context.Request.Params["id"];
 
-            // 操作数据库，执行添加任务
-            var connStr = ConfigurationManager.ConnectionStrings["mydb"].ConnectionString;
-            using (var connection = new SqlConnection(connStr))
-            {
-                connection.Open();
-                var cmdText = $@"delete from students where id = @id";
-                using (var command = new SqlCommand(cmdText,connection))
-                {
-                    command.Parameters.AddRange(new SqlParameter[]
-                    {
-                        new SqlParameter("@id",id)
-                    });
-                    command.ExecuteNonQuery();
-                }
-            }
+            // 操作数据库，执行删除任务
+            DbHelper.DoExecuteNonQuery("delete from students where id = @id", new SqlParameter("@id", id));
 
             // 返回相应页面
             context.Response.Redirect($"/students");
