@@ -21,23 +21,19 @@ namespace StudentManageSystem
         /// <summary>
         /// 不完美的完美实现。基于字符串替换。
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="ds"></param>
-        /// <returns></returns>
         public static string GetHtml(string path, params object[] ds)
         {
             var tpl = GetTemplate(path);
-            var html = string.Format(tpl
-                                    .Replace("{{", "<<aaa")
-                                    .Replace("}}", "bbb>>")
-                                    .Replace("{", "<<fff")
-                                    .Replace("}", ">>ggg")
-                                    .Replace("<<aaa", "{")
-                                    .Replace("bbb>>", "}"),
-                                    ds)
-                .Replace("<<fff", "{")
-                .Replace(">>ggg", "}");
-            return html;
+            return string.Format(tpl
+                .Replace("{{", "<<aaa>>")
+                .Replace("}}", "<<bbb>>")
+                .Replace("{",  "<<fff>>")
+                .Replace("}",  "<<ggg>>")
+                .Replace("<<aaa>>",  "{")
+                .Replace("<<bbb>>",  "}"),
+              ds)
+                .Replace("<<fff>>",  "{")
+                .Replace("<<ggg>>",  "}");
         }
     }
 }
