@@ -39,15 +39,14 @@
             </div>
         </div>
         <div class='btn-group'>
-            <button onclick='goHome()'>返回首页</button>
+            <button onclick='goHome(event)'>返回首页</button>
             <button>保存</button>
         </div>
     </form>
     <script>
-        function goHome() {
-            //if (window.confirm('是不是确定要返回首页?')) {
+        function goHome(e) {
+            e.preventDefault();
             window.location.href = '/students';
-            //}
         }
     </script>
 </body>

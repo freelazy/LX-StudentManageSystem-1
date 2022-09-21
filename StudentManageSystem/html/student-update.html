@@ -42,14 +42,13 @@
             </div>
         </div>
         <div class='btn-group'>
-            <button onclick='return goHome()'>返回首页</button>
+            <button onclick='goHome(); return false'>返回首页</button>
             <input type="submit" value="保存" />
         </div>
     </form>
     <script>
         function goHome() {
             window.location.href = '/students';
-            return false;
         }
     </script>
 </body>
