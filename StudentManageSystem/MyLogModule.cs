@@ -45,4 +45,31 @@ namespace StudentManageSystem
         {
         }
     }
+
+
+    public class AModule : IHttpModule
+    {
+        public void Dispose()
+        {
+        }
+
+        public void Init(HttpApplication context)
+        {
+            context.PreRequestHandlerExecute += (s, e) =>
+            {
+                var app = (HttpApplication)s;
+                app.Response.Write("我是在 handler 被执行前触发的 1111");
+            };
+            context.PreRequestHandlerExecute += (s, e) =>
+            {
+                var app = (HttpApplication)s;
+                app.Response.Write("我是在 handler 被执行前触发的 2222");
+            };
+            context.PostRequestHandlerExecute += (s, e) =>
+            {
+                var app = (HttpApplication)s;
+                app.Response.Write("我是在 handler 被执行后触发");
+            };
+        }
+    }
 }

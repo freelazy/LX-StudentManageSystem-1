@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global.asax" />
     <Content Include="html\student-add.html" />
     <Content Include="html\student-detail.html" />
     <Content Include="html\student-list.html" />
@@ -77,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbHelper.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="MyLogModule.cs" />
     <Compile Include="PgHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
