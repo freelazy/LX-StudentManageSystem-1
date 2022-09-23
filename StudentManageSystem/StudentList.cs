@@ -12,7 +12,6 @@ namespace StudentManageSystem
     {
         public bool IsReusable => false;
 
-        // 发放苹果
         public void ProcessRequest(HttpContext context)
         {
             // 第一步，将所有学生，从数据库中读取出来
