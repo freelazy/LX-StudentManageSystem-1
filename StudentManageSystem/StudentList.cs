@@ -33,7 +33,8 @@ namespace StudentManageSystem
 </tr>
 ";
             }
-            var html = PgHelper.GetHtml("student-list.html", rows);
+            var user = context.Session["user"] as User;
+            var html = PgHelper.GetHtml("student-list.html", rows, user.Username);
 
             // 第三步，返回给请求者
             context.Response.Write(html);

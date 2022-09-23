@@ -83,6 +83,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logout.cs" />
     <Compile Include="LoginSubmit.cs" />
     <Compile Include="MyShenFenModule.cs" />
     <Compile Include="MyLogModule.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="StudentAddSubmit.cs" />
     <Compile Include="StudentDetail.cs" />
     <Compile Include="StudentList.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

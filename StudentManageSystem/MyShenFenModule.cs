@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.SessionState;
 
 namespace StudentManageSystem
 {
@@ -10,17 +11,35 @@ namespace StudentManageSystem
     {
         public void Init(HttpApplication context)
         {
-            context.BeginRequest += YanZhengShifouDenglu;
+            context.BeginRequest += ActiveSession;
+            context.PreRequestHandlerExecute += SessionStyle;
         }
 
-        private void YanZhengShifouDenglu(object sender, EventArgs e)
+        private void ActiveSession(object sender, EventArgs e)
+        {
+            (sender as HttpApplication).Context
+                .SetSessionStateBehavior(SessionStateBehavior.Required);
+        }
+
+        private void SessionStyle(object sender, EventArgs e)
         {
             var app = (HttpApplication)sender;
             if (!app.Request.Url.ToString().Contains("/login"))
             {
-                var zt = app.Request.Cookies["zt"];
+                if (app.Context.Session["user"] == null)
+                {
+                    app.Response.Redirect("/login");
+                    app.Response.End();
+                }
+            }
+        }
 
-                if (zt == null)
+        private void CookieStyle(object sender, EventArgs e)
+        {
+            var app = (HttpApplication)sender;
+            if (!app.Request.Url.ToString().Contains("/login"))
+            {
+                if (app.Request.Cookies["zt"] == null)
                 {
                     app.Response.Redirect("/login");
                     app.Response.End();

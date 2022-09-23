@@ -1,6 +1,10 @@
 ﻿<html>
 <head>
     <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+        }
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
@@ -12,7 +16,13 @@
     </style>
 </head>
 <body>
-    <h3> 学生列表 </h3>
+    <header>
+        <h3> 学生列表 </h3>
+        <div>
+            <span>欢迎您 {{1}} !</span>
+            <span><a href="/logout">注销</a></span>
+        </div>
+    </header>
     <div>
         <a href='/student/add'>添加学生</a>
     </div>
